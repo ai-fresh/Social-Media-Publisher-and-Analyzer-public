@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — Social Media Publisher & Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg-secondary: #161b22; --border: #30363d;
+      --text: #c9d1d9; --text-muted: #8b949e; --accent: #58a6ff;
+      --accent-hover: #79c0ff; --radius: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 1000px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 32px; }
+    .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); text-decoration: none; }
+    .logo:hover { color: var(--accent); }
+    nav.header-nav { display: flex; gap: 24px; margin-left: auto; align-items: center; }
+    nav.header-nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav.header-nav a:hover { color: var(--text); text-decoration: none; }
+    .container { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+    .page-header { margin-bottom: 40px; padding-bottom: 24px; border-bottom: 1px solid var(--border); }
+    .page-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .page-header .meta { color: var(--text-muted); font-size: 0.9rem; }
+    .page-header .meta a { color: var(--text-muted); }
+    .page-header .meta a:hover { color: var(--accent); }
+    section { margin-bottom: 36px; }
+    h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 12px; color: var(--text); padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+    h3 { font-size: 0.95rem; font-weight: 700; margin: 16px 0 8px; color: var(--text); }
+    p { color: var(--text-muted); margin-bottom: 12px; font-size: 0.95rem; }
+    ul { list-style: none; padding: 0; margin-bottom: 12px; }
+    ul li { color: var(--text-muted); font-size: 0.95rem; padding: 4px 0 4px 16px; position: relative; }
+    ul li::before { content: "–"; position: absolute; left: 0; color: var(--accent); }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 16px; font-size: 0.9rem; }
+    th { text-align: left; padding: 10px 14px; background: var(--bg-secondary); color: var(--text); border: 1px solid var(--border); font-weight: 600; }
+    td { padding: 10px 14px; border: 1px solid var(--border); color: var(--text-muted); vertical-align: top; }
+    td a { font-size: 0.85rem; word-break: break-all; }
+    footer { border-top: 1px solid var(--border); padding: 28px 24px; text-align: center; color: var(--text-muted); font-size: .875rem; }
+    footer a { color: var(--text-muted); }
+    footer a:hover { color: var(--text); text-decoration: none; }
+    .footer-links { display: flex; gap: 20px; justify-content: center; margin-bottom: 10px; flex-wrap: wrap; }
+    @media (max-width: 640px) {
+      .page-header h1 { font-size: 1.5rem; }
+      nav.header-nav a:not(.btn-primary) { display: none; }
+      table { font-size: 0.8rem; }
+      td, th { padding: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">📱 Social Publisher</a>
+    <nav class="header-nav">
+      <a href="../docs/getting-started.html">Docs</a>
+      <a href="terms-of-service.html">Terms</a>
+      <a href="https://github.com/ai-fresh/Social-Media-Publisher-and-Analyzer-public">GitHub</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="page-header">
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: March 6, 2026 &nbsp;·&nbsp; Contact: <a href="mailto:adrian@aifresh.pl">adrian@aifresh.pl</a></p>
+  </div>
+
+  <section>
+    <h2>1. Overview</h2>
+    <p>Social Media Publisher &amp; Analyzer ("the App") is a macOS application that allows users to upload, manage, and publish video content to social media platforms (TikTok, Instagram, YouTube), as well as generate AI-assisted metadata such as titles, descriptions, hashtags, and thumbnails.</p>
+    <p>This Privacy Policy explains what data we collect, how we use it, and how we protect it.</p>
+  </section>
+
+  <section>
+    <h2>2. Data We Collect</h2>
+
+    <h3>2.1 Data You Provide</h3>
+    <ul>
+      <li>Video files you upload to the App</li>
+      <li>Titles, descriptions, hashtags, and other metadata you create or edit</li>
+      <li>Social media account credentials (OAuth tokens) used to connect your accounts</li>
+    </ul>
+
+    <h3>2.2 Data Generated Automatically</h3>
+    <ul>
+      <li>Video transcriptions generated by OpenAI Whisper</li>
+      <li>AI-generated metadata (titles, descriptions, hashtags) via OpenAI GPT-4o</li>
+      <li>AI-generated thumbnail images via DALL-E 3 or Google Imagen 4</li>
+    </ul>
+
+    <h3>2.3 Data We Do NOT Collect</h3>
+    <ul>
+      <li>We do not collect personal information beyond what is necessary for the App to function</li>
+      <li>We do not sell, rent, or share your data with third parties for advertising purposes</li>
+      <li>We do not track your behavior across other apps or websites</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>3. How We Use Your Data</h2>
+    <p>Your data is used exclusively to:</p>
+    <ul>
+      <li>Upload and publish your video content to social media platforms you authorize</li>
+      <li>Generate AI-assisted content (transcriptions, metadata, thumbnails)</li>
+      <li>Schedule and automate future posts on your behalf</li>
+      <li>Display your content history and analytics within the App</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>4. OAuth Tokens and Social Media Access</h2>
+    <p>When you connect a social media account (TikTok, Instagram, YouTube), the App receives an OAuth access token from that platform. This token:</p>
+    <ul>
+      <li>Is encrypted using AES-256 (Fernet) before being stored</li>
+      <li>Is stored only on your own backend server</li>
+      <li>Is used solely to publish content on your behalf</li>
+      <li>Can be revoked at any time by disconnecting the account within the App or through the respective platform's settings</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>5. Third-Party Services</h2>
+    <p>The App integrates with the following third-party services:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Purpose</th>
+          <th>Privacy Policy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>OpenAI</td>
+          <td>Transcription, metadata generation, image generation</td>
+          <td><a href="https://openai.com/privacy" target="_blank" rel="noopener">openai.com/privacy</a></td>
+        </tr>
+        <tr>
+          <td>Google (Imagen 4, YouTube)</td>
+          <td>Image generation, video publishing</td>
+          <td><a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></td>
+        </tr>
+        <tr>
+          <td>TikTok</td>
+          <td>Video publishing</td>
+          <td><a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener">tiktok.com/legal/privacy-policy</a></td>
+        </tr>
+        <tr>
+          <td>Meta (Instagram)</td>
+          <td>Video publishing</td>
+          <td><a href="https://www.facebook.com/privacy/policy" target="_blank" rel="noopener">facebook.com/privacy/policy</a></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>Your video content and metadata may be processed by these services as part of the App's functionality.</p>
+  </section>
+
+  <section>
+    <h2>6. Data Storage and Security</h2>
+    <ul>
+      <li>Video files and metadata are stored on a private backend server controlled by you</li>
+      <li>OAuth tokens are encrypted at rest using AES-256 encryption</li>
+      <li>No data is stored on third-party cloud services beyond what is required for AI processing</li>
+      <li>We take reasonable technical measures to protect your data against unauthorized access</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>7. Data Retention</h2>
+    <ul>
+      <li>Your data is retained for as long as you use the App</li>
+      <li>You can delete any video, metadata, or connected account at any time through the App</li>
+      <li>Upon deletion, associated data is permanently removed from the backend</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>8. Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access all data stored about you within the App</li>
+      <li>Delete your data at any time</li>
+      <li>Revoke social media account access at any time</li>
+      <li>Request information about how your data is processed</li>
+    </ul>
+    <p>To exercise any of these rights, contact us at <a href="mailto:adrian@aifresh.pl">adrian@aifresh.pl</a>.</p>
+  </section>
+
+  <section>
+    <h2>9. Children's Privacy</h2>
+    <p>The App is not intended for use by individuals under the age of 13. We do not knowingly collect personal data from children.</p>
+  </section>
+
+  <section>
+    <h2>10. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Changes will be reflected by updating the "Last updated" date at the top of this document. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+  </section>
+
+  <section>
+    <h2>11. Contact</h2>
+    <p>For any questions regarding this Privacy Policy, please contact: <a href="mailto:adrian@aifresh.pl">adrian@aifresh.pl</a></p>
+  </section>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="../index.html">Home</a>
+    <a href="../docs/getting-started.html">Docs</a>
+    <a href="terms-of-service.html">Terms of Service</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="https://github.com/ai-fresh/Social-Media-Publisher-and-Analyzer-public">GitHub</a>
+  </div>
+  <div>© 2026 AI Fresh. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
