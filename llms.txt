@@ -1,0 +1,48 @@
+# Social Media Publisher & Analyzer
+
+> AI-powered video publishing platform for macOS — publish to TikTok, Instagram, and YouTube with auto-generated content.
+
+Social Media Publisher & Analyzer is a native macOS app (SwiftUI + FastAPI backend) that lets creators upload videos and automatically generate titles, descriptions, hashtags, and thumbnails using OpenAI's Whisper, GPT-4o, DALL-E 3, and Google Imagen 4 — then publish to multiple social platforms with a single click or schedule for later.
+
+## Documentation
+
+- [Docs Home](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/): Main documentation hub
+- [Getting Started](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/getting-started.html): Installation and first-time setup
+- [Video Library](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/features/video-library.html): Drag & drop upload and video management
+- [AI Features](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/features/ai-features.html): Transcription, metadata generation, voice input, refinement
+- [Cover Generation](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/features/cover-generation.html): DALL-E 3, Imagen 4, and AI cover editing
+- [Publishing](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/features/publishing.html): YouTube, Instagram, TikTok OAuth and publishing
+- [Scheduler](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/features/scheduler.html): APScheduler with SQLAlchemy job store and 3x retry
+- [Brand Settings](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/features/brand-settings.html): Tone of voice, style prompt, default hashtags
+- [API Reference](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/reference/api-reference.html): Full REST API documentation
+- [Configuration](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/reference/configuration.html): All environment variables
+- [Troubleshooting](https://ai-fresh.github.io/Social-Media-Publisher-and-Analyzer-priv-/docs/reference/troubleshooting.html): Common issues and fixes
+
+## Source Code
+
+- [GitHub Repository](https://github.com/ai-fresh/Social-Media-Publisher-and-Analyzer-priv-)
+
+## Key Features
+
+- OpenAI Whisper transcription → SRT captions
+- GPT-4o metadata generation (title, description, hashtags) with brand context
+- DALL-E 3 and Google Imagen 4 thumbnail generation
+- gpt-image-1 cover editing with natural language
+- Voice input via microphone (AVAudioRecorder + Whisper)
+- YouTube (resumable upload), Instagram (Reels), TikTok (chunked upload)
+- OAuth 2.0 with AES-256 Fernet token encryption
+- APScheduler with SQLAlchemy job store — restart-safe, 3x retry
+- Native macOS 14+ app in SwiftUI
+- FastAPI + PostgreSQL + Docker backend
+
+## Tech Stack
+
+- **Backend**: FastAPI (Python 3.11+), SQLAlchemy async, Alembic migrations, PostgreSQL 16
+- **AI**: OpenAI (Whisper, GPT-4o, DALL-E 3, gpt-image-1), Google Gemini (Imagen 4)
+- **macOS App**: SwiftUI, AVKit, ASWebAuthenticationSession
+- **Infrastructure**: Docker Compose, Nginx (SSL termination, 500MB upload limit)
+- **Security**: Fernet AES-256 token encryption
+
+## Database Schema
+
+Tables: `videos`, `video_metadata`, `scheduled_posts`, `social_accounts`, `brand_settings`

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Brand Settings in Social Media Publisher — thumbnail provider toggle and cover style prompt, located in the Konta view.">
+  <title>Brand Settings — Social Media Publisher & Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg-secondary: #161b22; --border: #30363d;
+      --text: #c9d1d9; --text-muted: #8b949e; --accent: #58a6ff;
+      --accent-hover: #79c0ff; --success: #3fb950; --warning: #d29922;
+      --danger: #f85149; --radius: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 32px; }
+    .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .logo:hover { color: var(--accent); text-decoration: none; }
+    nav.header-nav { display: flex; gap: 24px; margin-left: auto; }
+    nav.header-nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav.header-nav a:hover { color: var(--text); text-decoration: none; }
+    .page { max-width: 960px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+    @media (max-width: 768px) { .page { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 72px; height: fit-content; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section h4 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul li a { display: block; padding: 4px 8px; border-radius: 4px; color: var(--text-muted); font-size: 0.875rem; }
+    .sidebar ul li a:hover { color: var(--text); background: var(--bg-secondary); text-decoration: none; }
+    .sidebar ul li a.active { color: var(--accent); background: rgba(88,166,255,0.1); }
+    .content h1 { font-size: 2rem; margin-bottom: 8px; }
+    .content .lead { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; }
+    .content h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 12px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .content h3 { font-size: 1rem; font-weight: 600; margin: 20px 0 8px; }
+    .content p { margin-bottom: 12px; }
+    .content ul { margin: 8px 0 16px 24px; }
+    .content li { margin-bottom: 6px; }
+    .callout { padding: 12px 16px; border-radius: var(--radius); margin: 16px 0; border-left: 4px solid; }
+    .callout-info { background: rgba(88,166,255,0.1); border-color: var(--accent); }
+    .callout strong { display: block; margin-bottom: 4px; }
+    .screenshot { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,.4); margin: 24px 0; }
+    .screenshot img { width: 100%; display: block; }
+    .screenshot figcaption { font-size: 0.8rem; color: var(--text-muted); padding: 8px 12px; background: var(--bg-secondary); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../../index.html" class="logo">📱 Social Publisher</a>
+    <nav class="header-nav">
+      <a href="../index.html">Docs</a>
+      <a href="../getting-started.html">Get Started</a>
+      <a href="../../index.html">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h4>Getting Started</h4>
+      <ul><li><a href="../getting-started.html">Installation</a></li></ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Features</h4>
+      <ul>
+        <li><a href="video-library.html">Video Library</a></li>
+        <li><a href="ai-features.html">AI Features</a></li>
+        <li><a href="cover-generation.html">Cover Generation</a></li>
+        <li><a href="publishing.html">Publishing</a></li>
+        <li><a href="scheduler.html">Scheduler</a></li>
+        <li><a href="brand-settings.html" class="active">Brand Settings</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Reference</h4>
+      <ul>
+        <li><a href="../reference/api-reference.html">API Reference</a></li>
+        <li><a href="../reference/configuration.html">Configuration</a></li>
+        <li><a href="../reference/troubleshooting.html">Troubleshooting</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>Brand Settings</h1>
+    <p class="lead">Configure your thumbnail provider and cover style prompt — located in the <strong>Konta</strong> view, in the <strong>Ustawienia marki</strong> section.</p>
+
+    <figure class="screenshot">
+      <img src="../../screenshots/04-accounts.png" alt="Konta view — Połączone konta and Ustawienia marki sections">
+      <figcaption>Konta view — the bottom section "Ustawienia marki" contains the thumbnail provider toggle and the cover style prompt textarea.</figcaption>
+    </figure>
+
+    <h2>Where to find it</h2>
+    <p>Brand settings are part of the <strong>Konta</strong> view — click <strong>Konta</strong> in the app sidebar. The <strong>Ustawienia marki</strong> section appears below the connected accounts list.</p>
+
+    <h2>Thumbnail provider</h2>
+    <p>A segmented toggle lets you select which AI model generates cover thumbnails:</p>
+    <ul>
+      <li><strong>Imagen 4 (Google)</strong> — Google's Imagen 4 model via Gemini API. Requires a paid Google AI Studio plan and a <code>GEMINI_API_KEY</code>.</li>
+      <li><strong>DALL-E 3 (OpenAI)</strong> — OpenAI's DALL-E 3 model. Requires <code>OPENAI_API_KEY</code>. Output is resized from 1792×1024 to 1280×720.</li>
+    </ul>
+    <p>This setting applies globally to all cover generation across all videos.</p>
+
+    <h2>Prompt stylu okładki</h2>
+    <p>A large text field where you describe the visual style for all generated thumbnails. This prompt is passed to the image model (Imagen 4 or DALL-E 3) as context for every cover generation request.</p>
+
+    <div class="callout callout-info">
+      <strong>Tip:</strong> The more specific your style prompt, the more consistent your thumbnails look across videos. Describe colors, typography, mood, lighting, and any visual elements that define your brand.
+    </div>
+
+    <h3>Example prompts</h3>
+    <ul>
+      <li>"Dark cinematic background, bold white sans-serif text at the top, neon blue accent lines, high contrast, professional YouTube thumbnail style"</li>
+      <li>"Bright and colorful, flat design, clean white background, bold title text in the center, minimal icons"</li>
+      <li>"9:16 vertical format, gradient background from dark purple to black, large face close-up on the left, title text on the right"</li>
+    </ul>
+  </main>
+</div>
+
+<footer>
+  <p>Social Media Publisher & Analyzer — <a href="../../index.html">Home</a> · <a href="../index.html">Docs</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Documentation hub for Social Media Publisher & Analyzer — AI-powered macOS video publishing app.">
+  <title>Documentation — Social Media Publisher & Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg-secondary: #161b22; --border: #30363d;
+      --text: #c9d1d9; --text-muted: #8b949e; --accent: #58a6ff;
+      --accent-hover: #79c0ff; --success: #3fb950; --warning: #d29922;
+      --danger: #f85149; --radius: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 32px; }
+    .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .logo:hover { color: var(--accent); text-decoration: none; }
+    nav.header-nav { display: flex; gap: 24px; margin-left: auto; }
+    nav.header-nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav.header-nav a:hover { color: var(--text); text-decoration: none; }
+    .btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 18px; border-radius: var(--radius); font-size: 0.875rem; font-weight: 500; cursor: pointer; transition: opacity 0.15s; text-decoration: none !important; }
+    .btn-primary { background: var(--accent); color: #fff !important; }
+    .btn-primary:hover { opacity: 0.85; }
+    .page { max-width: 960px; margin: 0 auto; padding: 48px 24px; }
+    .page-hero { margin-bottom: 48px; }
+    .page-hero h1 { font-size: 2.2rem; margin-bottom: 8px; }
+    .page-hero p { color: var(--text-muted); font-size: 1.05rem; }
+    h2 { font-size: 1.2rem; font-weight: 700; margin: 40px 0 16px; padding-top: 40px; border-top: 1px solid var(--border); }
+    h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 16px 0; }
+    .card { padding: 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.2s; }
+    .card:hover { border-color: var(--accent); }
+    .card-icon { font-size: 1.5rem; margin-bottom: 10px; }
+    .card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .card p { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.5; }
+    .card a { font-size: 0.85rem; }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">📱 Social Publisher</a>
+    <nav class="header-nav">
+      <a href="index.html">Docs</a>
+      <a href="getting-started.html">Get Started</a>
+      <a href="../index.html">Home</a>
+      <a href="getting-started.html" class="btn btn-primary">Get Started</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <div class="page-hero">
+    <h1>Documentation</h1>
+    <p>Everything you need to set up, configure, and use Social Media Publisher & Analyzer.</p>
+  </div>
+
+  <h2>Getting Started</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>Installation & Setup</h3>
+      <p>Set up the backend with Docker, configure your environment, and build the macOS app.</p>
+      <a href="getting-started.html">Installation guide →</a>
+    </div>
+  </div>
+
+  <h2>Features</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">📚</div>
+      <h3>Video Library</h3>
+      <p>Drag & drop uploads, video preview, status management, and full CRUD operations for your video catalog.</p>
+      <a href="features/video-library.html">Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🤖</div>
+      <h3>AI Features</h3>
+      <p>Whisper transcription, GPT-4o metadata generation, voice input, and field-level refinement.</p>
+      <a href="features/ai-features.html">Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🖼️</div>
+      <h3>Cover Generation</h3>
+      <p>Generate thumbnails with DALL-E 3 or Imagen 4. Edit existing covers with natural language using gpt-image-1.</p>
+      <a href="features/cover-generation.html">Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>Multi-Platform Publishing</h3>
+      <p>Connect YouTube, Instagram, and TikTok via OAuth and publish to all three from one interface.</p>
+      <a href="features/publishing.html">Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">📅</div>
+      <h3>Content Scheduler</h3>
+      <p>Schedule posts for future dates. Background job execution with automatic retry on failure.</p>
+      <a href="features/scheduler.html">Learn more →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🏷️</div>
+      <h3>Brand Settings</h3>
+      <p>Configure your brand voice, style prompts, default hashtags, and CTAs applied to all AI generation.</p>
+      <a href="features/brand-settings.html">Learn more →</a>
+    </div>
+  </div>
+
+  <h2>Reference</h2>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <h3>API Reference</h3>
+      <p>Full REST API documentation — endpoints, request/response formats, and authentication.</p>
+      <a href="reference/api-reference.html">View API docs →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚙️</div>
+      <h3>Configuration</h3>
+      <p>All environment variables, docker-compose settings, and backend configuration options.</p>
+      <a href="reference/configuration.html">Configuration →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔧</div>
+      <h3>Troubleshooting</h3>
+      <p>Common issues with AI services, OAuth connections, Docker, and the macOS app — with fixes.</p>
+      <a href="reference/troubleshooting.html">Troubleshooting →</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Social Media Publisher & Analyzer — <a href="../index.html">Home</a> · <a href="https://github.com/ai-fresh/Social-Media-Publisher-and-Analyzer-priv-">GitHub</a></p>
+</footer>
+
+</body>
+</html>

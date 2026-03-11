@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Content Scheduler in Social Media Publisher — monthly calendar planner, APScheduler with 3x retry.">
+  <title>Scheduler — Social Media Publisher & Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg-secondary: #161b22; --border: #30363d;
+      --text: #c9d1d9; --text-muted: #8b949e; --accent: #58a6ff;
+      --accent-hover: #79c0ff; --success: #3fb950; --warning: #d29922;
+      --danger: #f85149; --radius: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    code { font-family: var(--font-mono); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 3px; padding: 2px 6px; font-size: 0.875em; }
+    pre { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; overflow-x: auto; margin: 16px 0; font-family: var(--font-mono); font-size: 0.825rem; }
+    pre code { background: none; border: none; padding: 0; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 32px; }
+    .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .logo:hover { color: var(--accent); text-decoration: none; }
+    nav.header-nav { display: flex; gap: 24px; margin-left: auto; }
+    nav.header-nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav.header-nav a:hover { color: var(--text); text-decoration: none; }
+    .page { max-width: 960px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+    @media (max-width: 768px) { .page { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 72px; height: fit-content; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section h4 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul li a { display: block; padding: 4px 8px; border-radius: 4px; color: var(--text-muted); font-size: 0.875rem; }
+    .sidebar ul li a:hover { color: var(--text); background: var(--bg-secondary); text-decoration: none; }
+    .sidebar ul li a.active { color: var(--accent); background: rgba(88,166,255,0.1); }
+    .content h1 { font-size: 2rem; margin-bottom: 8px; }
+    .content .lead { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; }
+    .content h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 12px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .content h3 { font-size: 1rem; font-weight: 600; margin: 20px 0 8px; }
+    .content p { margin-bottom: 12px; }
+    .content ul, .content ol { margin: 8px 0 16px 24px; }
+    .content li { margin-bottom: 6px; }
+    .callout { padding: 12px 16px; border-radius: var(--radius); margin: 16px 0; border-left: 4px solid; }
+    .callout-info { background: rgba(88,166,255,0.1); border-color: var(--accent); }
+    .callout-warning { background: rgba(210,153,34,0.1); border-color: var(--warning); }
+    .callout-success { background: rgba(63,185,80,0.1); border-color: var(--success); }
+    .callout strong { display: block; margin-bottom: 4px; }
+    .screenshot { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,.4); margin: 24px 0; }
+    .screenshot img { width: 100%; display: block; }
+    .screenshot figcaption { font-size: 0.8rem; color: var(--text-muted); padding: 8px 12px; background: var(--bg-secondary); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../../index.html" class="logo">📱 Social Publisher</a>
+    <nav class="header-nav">
+      <a href="../index.html">Docs</a>
+      <a href="../getting-started.html">Get Started</a>
+      <a href="../../index.html">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h4>Getting Started</h4>
+      <ul><li><a href="../getting-started.html">Installation</a></li></ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Features</h4>
+      <ul>
+        <li><a href="video-library.html">Video Library</a></li>
+        <li><a href="ai-features.html">AI Features</a></li>
+        <li><a href="cover-generation.html">Cover Generation</a></li>
+        <li><a href="publishing.html">Publishing</a></li>
+        <li><a href="scheduler.html" class="active">Scheduler</a></li>
+        <li><a href="brand-settings.html">Brand Settings</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Reference</h4>
+      <ul>
+        <li><a href="../reference/api-reference.html">API Reference</a></li>
+        <li><a href="../reference/configuration.html">Configuration</a></li>
+        <li><a href="../reference/troubleshooting.html">Troubleshooting</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>Planer publikacji</h1>
+    <p class="lead">Monthly calendar view for scheduling posts. APScheduler runs in the background with automatic 3x retry — jobs survive backend restarts.</p>
+
+    <figure class="screenshot">
+      <img src="../../screenshots/03-planner.png" alt="Planer publikacji — monthly calendar for March 2026 with right-side panel showing 0 scheduled posts">
+      <figcaption>Planer publikacji — monthly calendar with navigation arrows, "Dziś" button, and a right-side panel listing scheduled posts for the selected date.</figcaption>
+    </figure>
+
+    <h2>Calendar view</h2>
+    <p>The <strong>Planer</strong> view shows a monthly calendar. Key UI elements:</p>
+    <ul>
+      <li><strong>Left/right arrows</strong> — navigate between months</li>
+      <li><strong>Dziś</strong> button — jump to the current month</li>
+      <li>Click any date to see the posts scheduled for that day in the right panel</li>
+      <li>The right panel shows the selected date, the number of posts, and lists each scheduled post (or "Brak zaplanowanych publikacji" if none)</li>
+    </ul>
+
+    <h2>Scheduling a post</h2>
+    <p>From the video detail sheet, click <strong>Zaplanuj publikację</strong> to schedule the video for a future date. This creates a scheduled post record with <code>pending</code> status.</p>
+
+    <div class="callout callout-info">
+      <strong>Prerequisite:</strong> The video must have a title and description before it can be scheduled. Run the AI pipeline first (Transkrypcja → Metadane → Okładka).
+    </div>
+
+    <h2>How the backend scheduler works</h2>
+    <p>APScheduler polls every 60 seconds for pending posts whose <code>scheduled_at</code> time has passed. When a post is due, the scheduler publishes it to the configured platforms and updates the status.</p>
+
+    <div class="callout callout-success">
+      <strong>Restart-safe:</strong> Jobs are stored in PostgreSQL via SQLAlchemyJobStore. Backend restarts don't lose scheduled posts.
+    </div>
+
+    <h2>Retry behavior</h2>
+    <p>If publishing fails, the scheduler retries automatically up to <strong>3 times</strong>. After 3 failures, the post status changes to <code>failed</code> and no further retries occur.</p>
+
+    <h2>Backend endpoints</h2>
+    <pre><code>GET    /api/schedule          # list all scheduled posts
+POST   /api/schedule          # create a scheduled post
+DELETE /api/schedule/{id}     # cancel a scheduled post</code></pre>
+  </main>
+</div>
+
+<footer>
+  <p>Social Media Publisher & Analyzer — <a href="../../index.html">Home</a> · <a href="../index.html">Docs</a></p>
+</footer>
+
+</body>
+</html>

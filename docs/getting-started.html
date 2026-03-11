@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Get started with Social Media Publisher & Analyzer — installation, backend setup, and first publish.">
+  <title>Getting Started — Social Media Publisher & Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg-secondary: #161b22; --border: #30363d;
+      --text: #c9d1d9; --text-muted: #8b949e; --accent: #58a6ff;
+      --accent-hover: #79c0ff; --success: #3fb950; --warning: #d29922;
+      --danger: #f85149; --radius: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    code { font-family: var(--font-mono); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 3px; padding: 2px 6px; font-size: 0.875em; }
+    pre { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); padding: 16px; overflow-x: auto; margin: 16px 0; font-family: var(--font-mono); font-size: 0.825rem; }
+    pre code { background: none; border: none; padding: 0; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 32px; }
+    .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .logo:hover { color: var(--accent); text-decoration: none; }
+    nav.header-nav { display: flex; gap: 24px; margin-left: auto; }
+    nav.header-nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav.header-nav a:hover { color: var(--text); text-decoration: none; }
+    .page { max-width: 960px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+    @media (max-width: 768px) { .page { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 72px; height: fit-content; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section h4 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul li a { display: block; padding: 4px 8px; border-radius: 4px; color: var(--text-muted); font-size: 0.875rem; }
+    .sidebar ul li a:hover { color: var(--text); background: var(--bg-secondary); text-decoration: none; }
+    .sidebar ul li a.active { color: var(--accent); background: rgba(88,166,255,0.1); }
+    .content h1 { font-size: 2rem; margin-bottom: 8px; }
+    .content .lead { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; }
+    .content h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 12px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .content h3 { font-size: 1rem; font-weight: 600; margin: 20px 0 8px; }
+    .content p { margin-bottom: 12px; color: var(--text); }
+    .content ul, .content ol { margin: 8px 0 16px 24px; }
+    .content li { margin-bottom: 6px; }
+    .steps { display: flex; flex-direction: column; gap: 16px; margin: 16px 0; }
+    .step { display: flex; gap: 16px; padding: 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); }
+    .step-number { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; font-size: 0.875rem; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .step-content h3 { margin: 0 0 6px; font-size: 1rem; }
+    .step-content p { margin: 0 0 8px; color: var(--text-muted); font-size: 0.9rem; }
+    .step-content pre { margin: 8px 0 0; }
+    .callout { padding: 12px 16px; border-radius: var(--radius); margin: 16px 0; border-left: 4px solid; }
+    .callout-info { background: rgba(88,166,255,0.1); border-color: var(--accent); }
+    .callout-warning { background: rgba(210,153,34,0.1); border-color: var(--warning); }
+    .callout-success { background: rgba(63,185,80,0.1); border-color: var(--success); }
+    .callout strong { display: block; margin-bottom: 4px; }
+    .next-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 24px; }
+    .next-card { padding: 16px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); transition: border-color 0.2s; }
+    .next-card:hover { border-color: var(--accent); }
+    .next-card h4 { font-size: 0.9rem; margin-bottom: 4px; }
+    .next-card p { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px; }
+    .next-card a { font-size: 0.8rem; }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../index.html" class="logo">📱 Social Publisher</a>
+    <nav class="header-nav">
+      <a href="index.html">Docs</a>
+      <a href="getting-started.html">Get Started</a>
+      <a href="../index.html">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h4>Getting Started</h4>
+      <ul>
+        <li><a href="getting-started.html" class="active">Installation</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Features</h4>
+      <ul>
+        <li><a href="features/video-library.html">Video Library</a></li>
+        <li><a href="features/ai-features.html">AI Features</a></li>
+        <li><a href="features/cover-generation.html">Cover Generation</a></li>
+        <li><a href="features/publishing.html">Publishing</a></li>
+        <li><a href="features/scheduler.html">Scheduler</a></li>
+        <li><a href="features/brand-settings.html">Brand Settings</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Reference</h4>
+      <ul>
+        <li><a href="reference/api-reference.html">API Reference</a></li>
+        <li><a href="reference/configuration.html">Configuration</a></li>
+        <li><a href="reference/troubleshooting.html">Troubleshooting</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>Getting Started</h1>
+    <p class="lead">Set up the backend, configure API keys, and run the macOS app in under 10 minutes.</p>
+
+    <h2>Requirements</h2>
+    <ul>
+      <li>macOS 14 (Sonoma) or later</li>
+      <li>Xcode 15+ (for the SwiftUI app)</li>
+      <li>Docker &amp; Docker Compose (for the backend)</li>
+      <li>OpenAI API key (required for Whisper + GPT-4o)</li>
+      <li>Gemini API key (optional — for Imagen 4 thumbnails)</li>
+    </ul>
+
+    <h2>Step 1: Clone the repository</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Clone & enter the project</h3>
+          <pre><code>git clone https://github.com/ai-fresh/Social-Media-Publisher-and-Analyzer-priv-.git
+cd Social-Media-Publisher-and-Analyzer-priv-</code></pre>
+        </div>
+      </div>
+    </div>
+
+    <h2>Step 2: Configure the backend</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Copy the environment template</h3>
+          <pre><code>cd backend
+cp .env.example .env</code></pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Fill in your API keys</h3>
+          <p>Open <code>.env</code> and set the required values:</p>
+          <pre><code># Required
+DATABASE_URL=postgresql+asyncpg://user:pass@db:5432/socialpub
+OPENAI_API_KEY=sk-...
+ENCRYPTION_KEY=your-fernet-key-here   # generate with: python -c "from cryptography.fernet import Fernet; print(Fernet.generate_key().decode())"
+
+# Optional — for Imagen 4 thumbnails
+GEMINI_API_KEY=AIza...
+
+# Social platforms (fill as needed)
+YOUTUBE_CLIENT_ID=...
+YOUTUBE_CLIENT_SECRET=...
+INSTAGRAM_APP_ID=...
+INSTAGRAM_APP_SECRET=...
+TIKTOK_CLIENT_KEY=...
+TIKTOK_CLIENT_SECRET=...</code></pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Start the backend with Docker</h3>
+          <pre><code>docker compose up -d</code></pre>
+          <p>This starts FastAPI (port 8000), PostgreSQL 16, and Nginx reverse proxy.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">4</div>
+        <div class="step-content">
+          <h3>Run database migrations</h3>
+          <pre><code>docker compose exec api alembic upgrade head</code></pre>
+          <p>Creates all tables: <code>videos</code>, <code>video_metadata</code>, <code>scheduled_posts</code>, <code>social_accounts</code>, <code>brand_settings</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-success">
+      <strong>Backend is running!</strong>
+      Visit <code>http://localhost:8000/docs</code> to see the interactive FastAPI Swagger UI.
+    </div>
+
+    <h2>Step 3: Build the macOS app</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Open in Xcode</h3>
+          <p>Open the <code>SocialMediaPublisher/</code> folder in Xcode (or double-click <code>Package.swift</code>).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Build and run</h3>
+          <p>Select the <strong>SocialMediaPublisher</strong> scheme and press <kbd>⌘R</kbd>. Alternatively, use the build script:</p>
+          <pre><code>cd SocialMediaPublisher
+bash build_app.sh</code></pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Connect to the backend</h3>
+          <p>The app connects to <code>http://localhost:8000</code> by default. If your backend is on a remote server, update the <code>BASE_URL</code> in <code>APIClient.swift</code>.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Step 4: Connect your social accounts</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Open the Konta view</h3>
+          <p>In the app sidebar, click <strong>Konta</strong>. The Połączone konta section lists YouTube, Instagram, and TikTok — each showing its connection status and a <strong>Połącz</strong> button.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Authenticate with OAuth</h3>
+          <p>Click <strong>Połącz</strong> for each platform. A browser window opens for OAuth authorization. Approve access and the token is saved (encrypted with AES-256 Fernet).</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Configure Ustawienia marki</h3>
+          <p>Still in the <strong>Konta</strong> view, scroll to the <strong>Ustawienia marki</strong> section. Choose a thumbnail provider (Imagen 4 or DALL-E 3) and enter a <strong>Prompt stylu okładki</strong> for consistent thumbnail style.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-warning">
+      <strong>TikTok Content Posting API</strong>
+      TikTok requires approval from TikTok to use the Content Posting API in production. During development you can test with sandbox mode.
+    </div>
+
+    <h2>Your first video</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Upload a video</h3>
+          <p>Drag & drop an MP4 file onto the Video Library, or click the upload button. Max file size: 500 MB. Supported: MP4, MOV, AVI, WebM, MPEG, 3GPP.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Generate All (one click)</h3>
+          <p>Click <strong>Generate All</strong> in the video detail panel. This runs transcription → metadata → thumbnail generation sequentially in the background.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Review and publish</h3>
+          <p>Review the generated title, description, hashtags, and thumbnail. Select target platforms and click <strong>Publish Now</strong> or <strong>Schedule</strong>.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout callout-success">
+      <strong>Done!</strong> Your video is published (or scheduled) to your connected social media accounts.
+    </div>
+
+    <h2>Next steps</h2>
+    <div class="next-cards">
+      <div class="next-card">
+        <h4>🤖 AI Features</h4>
+        <p>Deep dive into transcription, metadata, and voice input.</p>
+        <a href="features/ai-features.html">Learn more →</a>
+      </div>
+      <div class="next-card">
+        <h4>🖼️ Cover Generation</h4>
+        <p>DALL-E 3, Imagen 4, and AI-powered cover editing.</p>
+        <a href="features/cover-generation.html">Learn more →</a>
+      </div>
+      <div class="next-card">
+        <h4>📅 Scheduler</h4>
+        <p>Schedule posts and understand the retry system.</p>
+        <a href="features/scheduler.html">Learn more →</a>
+      </div>
+      <div class="next-card">
+        <h4>⚙️ Configuration</h4>
+        <p>All environment variables and settings.</p>
+        <a href="reference/configuration.html">Learn more →</a>
+      </div>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <p>Social Media Publisher & Analyzer — <a href="../index.html">Home</a> · <a href="index.html">Docs</a> · <a href="https://github.com/ai-fresh/Social-Media-Publisher-and-Analyzer-priv-">GitHub</a></p>
+</footer>
+
+</body>
+</html>

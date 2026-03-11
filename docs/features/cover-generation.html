@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Cover generation in Social Media Publisher — DALL-E 3 or Imagen 4, aspect ratio selection, step 3 of the AI pipeline.">
+  <title>Cover Generation — Social Media Publisher & Analyzer</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0d1117; --bg-secondary: #161b22; --border: #30363d;
+      --text: #c9d1d9; --text-muted: #8b949e; --accent: #58a6ff;
+      --accent-hover: #79c0ff; --success: #3fb950; --warning: #d29922;
+      --danger: #f85149; --radius: 6px;
+      --font: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'SF Mono', 'Cascadia Code', 'Fira Code', monospace;
+    }
+    body { font-family: var(--font); background: var(--bg); color: var(--text); line-height: 1.6; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); text-decoration: underline; }
+    code { font-family: var(--font-mono); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: 3px; padding: 2px 6px; font-size: 0.875em; }
+    header { position: sticky; top: 0; z-index: 100; background: rgba(13,17,23,0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+    .header-inner { max-width: 960px; margin: 0 auto; padding: 0 24px; height: 56px; display: flex; align-items: center; gap: 32px; }
+    .logo { font-weight: 700; font-size: 1.05rem; color: var(--text); }
+    .logo:hover { color: var(--accent); text-decoration: none; }
+    nav.header-nav { display: flex; gap: 24px; margin-left: auto; }
+    nav.header-nav a { color: var(--text-muted); font-size: 0.9rem; }
+    nav.header-nav a:hover { color: var(--text); text-decoration: none; }
+    .page { max-width: 960px; margin: 0 auto; padding: 32px 24px; display: grid; grid-template-columns: 220px 1fr; gap: 48px; }
+    @media (max-width: 768px) { .page { grid-template-columns: 1fr; } .sidebar { display: none; } }
+    .sidebar { position: sticky; top: 72px; height: fit-content; }
+    .sidebar-section { margin-bottom: 24px; }
+    .sidebar-section h4 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 8px; }
+    .sidebar ul { list-style: none; }
+    .sidebar ul li a { display: block; padding: 4px 8px; border-radius: 4px; color: var(--text-muted); font-size: 0.875rem; }
+    .sidebar ul li a:hover { color: var(--text); background: var(--bg-secondary); text-decoration: none; }
+    .sidebar ul li a.active { color: var(--accent); background: rgba(88,166,255,0.1); }
+    .content h1 { font-size: 2rem; margin-bottom: 8px; }
+    .content .lead { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 32px; }
+    .content h2 { font-size: 1.2rem; font-weight: 700; margin: 36px 0 12px; padding-top: 36px; border-top: 1px solid var(--border); }
+    .content h3 { font-size: 1rem; font-weight: 600; margin: 20px 0 8px; }
+    .content p { margin-bottom: 12px; }
+    .content ul, .content ol { margin: 8px 0 16px 24px; }
+    .content li { margin-bottom: 6px; }
+    .callout { padding: 12px 16px; border-radius: var(--radius); margin: 16px 0; border-left: 4px solid; }
+    .callout-info { background: rgba(88,166,255,0.1); border-color: var(--accent); }
+    .callout-warning { background: rgba(210,153,34,0.1); border-color: var(--warning); }
+    .callout strong { display: block; margin-bottom: 4px; }
+    .screenshot { border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 8px 32px rgba(0,0,0,.4); margin: 24px 0; }
+    .screenshot img { width: 100%; display: block; }
+    .screenshot figcaption { font-size: 0.8rem; color: var(--text-muted); padding: 8px 12px; background: var(--bg-secondary); }
+    .provider-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin: 20px 0; }
+    .provider-card { padding: 20px; background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius); }
+    .provider-card h3 { font-size: 1rem; margin-bottom: 6px; }
+    .provider-card p { font-size: 0.85rem; color: var(--text-muted); }
+    .provider-card ul { margin: 8px 0 0 18px; font-size: 0.8rem; color: var(--text-muted); }
+    footer { border-top: 1px solid var(--border); padding: 24px; text-align: center; color: var(--text-muted); font-size: 0.875rem; }
+    footer a { color: var(--text-muted); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="../../index.html" class="logo">📱 Social Publisher</a>
+    <nav class="header-nav">
+      <a href="../index.html">Docs</a>
+      <a href="../getting-started.html">Get Started</a>
+      <a href="../../index.html">Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page">
+  <aside class="sidebar">
+    <div class="sidebar-section">
+      <h4>Getting Started</h4>
+      <ul><li><a href="../getting-started.html">Installation</a></li></ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Features</h4>
+      <ul>
+        <li><a href="video-library.html">Video Library</a></li>
+        <li><a href="ai-features.html">AI Features</a></li>
+        <li><a href="cover-generation.html" class="active">Cover Generation</a></li>
+        <li><a href="publishing.html">Publishing</a></li>
+        <li><a href="scheduler.html">Scheduler</a></li>
+        <li><a href="brand-settings.html">Brand Settings</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-section">
+      <h4>Reference</h4>
+      <ul>
+        <li><a href="../reference/api-reference.html">API Reference</a></li>
+        <li><a href="../reference/configuration.html">Configuration</a></li>
+        <li><a href="../reference/troubleshooting.html">Troubleshooting</a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <h1>Cover Generation</h1>
+    <p class="lead">Step 3 of the AI pipeline — generate a video thumbnail using Imagen 4 (Google) or DALL-E 3 (OpenAI), with selectable aspect ratio.</p>
+
+    <figure class="screenshot">
+      <img src="../../screenshots/02-video-detail.png" alt="Video detail sheet — Step 3 Okładka (Imagen 4) with aspect ratio selector">
+      <figcaption>Video detail sheet — Step 3 "Okładka (Imagen 4)" shows the cover generation step with a green checkmark when done. The Proporcje toggle is used to select the target aspect ratio before generating.</figcaption>
+    </figure>
+
+    <h2>In the app</h2>
+    <p>Cover generation is <strong>Step 3</strong> in the video detail sheet. Before clicking the generate button, select the <strong>Proporcje</strong> (aspect ratio) using the segmented control:</p>
+    <ul>
+      <li><strong>9:16</strong> — vertical, for TikTok and Instagram Reels</li>
+      <li><strong>16:9</strong> — landscape, for YouTube</li>
+      <li><strong>1:1</strong> — square, for Instagram feed posts</li>
+    </ul>
+    <p>When complete, the step shows a green checkmark. The generated thumbnail is shown in the video preview area at the top of the sheet.</p>
+
+    <div class="callout callout-info">
+      <strong>Prerequisite:</strong> Transcription (Step 1) and Metadata generation (Step 2) must complete before cover generation. Use <strong>Generate All</strong> to run all three steps at once.
+    </div>
+
+    <h2>Providers</h2>
+    <div class="provider-cards">
+      <div class="provider-card">
+        <h3>🎨 Imagen 4 (Google)</h3>
+        <p>Google's Imagen 4 model via Gemini API. Default provider when configured.</p>
+        <ul>
+          <li>Requires <code>GEMINI_API_KEY</code></li>
+          <li>Requires paid Google AI Studio plan</li>
+        </ul>
+      </div>
+      <div class="provider-card">
+        <h3>🖌️ DALL-E 3 (OpenAI)</h3>
+        <p>OpenAI's DALL-E 3 image model. Used when Imagen 4 is not configured.</p>
+        <ul>
+          <li>Requires <code>OPENAI_API_KEY</code></li>
+          <li>Output resized to 1280×720 via Pillow</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2>Switching providers</h2>
+    <p>The active thumbnail provider is set in <strong>Konta → Ustawienia marki</strong> in the app. The toggle shows <strong>Imagen 4 (Google)</strong> and <strong>DALL-E 3 (OpenAI)</strong>. See <a href="brand-settings.html">Brand Settings</a> for details.</p>
+
+    <h2>Style prompt</h2>
+    <p>The image prompt sent to the model is automatically constructed from the video transcript, title, description, and the <strong>Prompt stylu okładki</strong> field configured in <strong>Konta → Ustawienia marki</strong>. A good style prompt produces visually consistent thumbnails across all your videos.</p>
+
+    <div class="callout callout-info">
+      <strong>Example style prompt:</strong> "Cinematic dark background, bold white sans-serif text, high contrast, professional YouTube thumbnail aesthetic."
+    </div>
+
+    <h2>Backend endpoint</h2>
+    <pre><code>POST /api/videos/{video_id}/generate-cover</code></pre>
+    <p>The request body includes the selected aspect ratio. Cover generation runs as a background task — the video status changes to <code>processing</code> while the image is being generated.</p>
+  </main>
+</div>
+
+<footer>
+  <p>Social Media Publisher & Analyzer — <a href="../../index.html">Home</a> · <a href="../index.html">Docs</a></p>
+</footer>
+
+</body>
+</html>
