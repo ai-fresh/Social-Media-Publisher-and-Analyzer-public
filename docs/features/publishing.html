@@ -141,39 +141,6 @@
     <h2>Connecting accounts</h2>
     <p>In the app, navigate to <strong>Konta</strong> in the sidebar. Each platform shows its status and a <strong>Połącz</strong> button. Click it to start the OAuth flow — a browser window opens for authorization via <code>ASWebAuthenticationSession</code>. After approval, the backend receives the callback and stores the encrypted token.</p>
 
-    <div class="callout callout-info">
-      <strong>Token security:</strong> All OAuth tokens are encrypted with Fernet (AES-256) before being stored in the database. Set <code>ENCRYPTION_KEY</code> in your <code>.env</code> file.
-    </div>
-
-    <h2>OAuth credentials setup</h2>
-
-    <h3>YouTube</h3>
-    <ol>
-      <li>Create a project at Google Cloud Console</li>
-      <li>Enable YouTube Data API v3</li>
-      <li>Create OAuth 2.0 credentials (Desktop App type)</li>
-      <li>Set <code>YOUTUBE_CLIENT_ID</code>, <code>YOUTUBE_CLIENT_SECRET</code>, <code>YOUTUBE_REDIRECT_URI</code> in <code>.env</code></li>
-    </ol>
-
-    <h3>Instagram</h3>
-    <ol>
-      <li>Create a Facebook App at developers.facebook.com</li>
-      <li>Add Instagram Graph API product</li>
-      <li>Link a Business or Creator Instagram account</li>
-      <li>Set <code>INSTAGRAM_APP_ID</code>, <code>INSTAGRAM_APP_SECRET</code> in <code>.env</code></li>
-    </ol>
-
-    <h3>TikTok</h3>
-    <ol>
-      <li>Create an app at developers.tiktok.com</li>
-      <li>Apply for Content Posting API access</li>
-      <li>Set <code>TIKTOK_CLIENT_KEY</code>, <code>TIKTOK_CLIENT_SECRET</code> in <code>.env</code></li>
-    </ol>
-
-    <div class="callout callout-warning">
-      <strong>TikTok production access:</strong> The Content Posting API requires a review from TikTok. In sandbox mode, posts go to a test account only.
-    </div>
-
     <h2>Scheduling from video detail</h2>
     <p>Once accounts are connected, open a video, ensure metadata is generated, then click <strong>Zaplanuj publikację</strong> in the video detail sheet to schedule it for a future date. See the <a href="scheduler.html">Scheduler</a> page for calendar details.</p>
   </main>
